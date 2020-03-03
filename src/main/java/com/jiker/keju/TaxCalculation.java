@@ -2,7 +2,7 @@ package com.jiker.keju;
 
 import java.math.BigDecimal;
 
-public class TaxCalculation {
+public final class TaxCalculation {
 
     // 2公里距离
     private static Integer minDistance = 2;
@@ -26,6 +26,7 @@ public class TaxCalculation {
         if (distance - minDistance > 0) {
             return minPrice.add(calTow(distance, minute)).add(calMinute(minute)).setScale(0, BigDecimal.ROUND_UP).intValue();
         } else {
+            // 不大于2公里时只收起步价6元
             return minPrice.add(calMinute(minute)).setScale(0, BigDecimal.ROUND_UP).intValue();
         }
     }
@@ -37,7 +38,7 @@ public class TaxCalculation {
 
     private static BigDecimal calEight(Integer distance, Integer minute) {
         // 超过8公里的部分，每公里加收50%长途费
-        BigDecimal morethan = new BigDecimal((distance - minDistance)).multiply(midPrice);
+        BigDecimal morethan = new BigDecimal((distance - minDistance)).multiply(midPrice.add(new BigDecimal(1)));
         return morethan.add(midPrice.multiply(addItionalPrice));
     }
 

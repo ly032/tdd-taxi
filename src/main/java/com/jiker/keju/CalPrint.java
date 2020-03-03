@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalPrint {
+public final class CalPrint {
 
     public static String getCalString(String fileStr) throws Exception {
         List<String> list = fileStringList(new File(fileStr));

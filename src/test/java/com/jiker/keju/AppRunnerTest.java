@@ -1,6 +1,5 @@
 package com.jiker.keju;
 
-import org.hamcrest.Matcher;
 import org.junit.Test;
 
 
