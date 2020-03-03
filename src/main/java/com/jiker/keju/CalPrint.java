@@ -23,7 +23,8 @@ public class CalPrint {
     public static List<Integer> getNumberfromString(String str) {
         List<Integer> list = new ArrayList<>();
         for (String item : str.replaceAll("[^0-9]", ",").split(",")) {
-            list.add(item.length() == 0 ? 0 : Integer.parseInt(item));
+            if(item.length() > 0)
+                list.add(Integer.parseInt(item));
         }
         return list;
     }
