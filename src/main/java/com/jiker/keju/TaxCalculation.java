@@ -22,9 +22,12 @@ public class TaxCalculation {
     // 每公里加收50%长途费
     private static BigDecimal waitPrice = new BigDecimal(0.25);
 
-    public static BigDecimal calAll(Integer distance, Integer minute) {
-        // 不大于2公里时只收起步价6元
-        return distance - minDistance > 0 ? minPrice.add(calTow(distance, minute)).add(calMinute(minute)) : minPrice.add(calMinute(minute));
+    public static Integer calAll(Integer distance, Integer minute) {
+        if (distance - minDistance > 0) {
+            return minPrice.add(calTow(distance, minute)).add(calMinute(minute)).setScale(0, BigDecimal.ROUND_UP).intValue();
+        } else {
+            return minPrice.add(calMinute(minute)).setScale(0, BigDecimal.ROUND_UP).intValue();
+        }
     }
 
     public static BigDecimal calTow(Integer distance, Integer minute) {

@@ -40,7 +40,7 @@ public class CalPrint {
         List<String> list = fileStringList(new File(fileStr));
         for (int i = 0; i < list.size(); i++) {
             List<Integer> numbers = getNumberfromString(list.get(i));
-            Integer allPrice = TaxCalculation.calAll(numbers.get(0), numbers.get(1)).setScale(0, BigDecimal.ROUND_UP).intValue();
+            Integer allPrice = TaxCalculation.calAll(numbers.get(0), numbers.get(1));
             receipt = receipt + String.format("收费%d元", allPrice) + ((i != list.size() - 1) ? System.lineSeparator() : "");
         }
         return receipt;
