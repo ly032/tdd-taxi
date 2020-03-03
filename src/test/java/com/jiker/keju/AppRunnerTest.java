@@ -36,7 +36,7 @@ public class AppRunnerTest {
     @Test
     public void moreEightTest() throws Exception {
         // 大于8公里,等待0分钟
-        calTaxPrice(12, 0, 16);
+        calTaxPrice(12, 0, 15);
     }
 
     @Test
@@ -57,7 +57,20 @@ public class AppRunnerTest {
         calTaxPrice(12, 3, 16);
     }
 
+    @Test
+    public void calPrintTest() throws Exception {
+        // 大于8公里,等待3分钟
+        String testDataFile = "src/main/resources/testData.txt";
+        String line = System.lineSeparator();
+        String testValue = String.format("收费6元" + line + "收费7元" + line + "收费13元" + line + "收费7元");
+        calTaxPricePrint(testDataFile, testValue);
+    }
+
     private void calTaxPrice(Integer distance, Integer minute, Integer value) {
         assertThat(TaxCalculation.calAll(distance, minute), is(value));
+    }
+
+    private void calTaxPricePrint(String filePath, String value) throws Exception {
+        assertThat(CalPrint.getCalString(filePath), is(value));
     }
 }
