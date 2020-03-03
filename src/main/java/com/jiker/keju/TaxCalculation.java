@@ -38,8 +38,9 @@ public final class TaxCalculation {
 
     private static BigDecimal calEight(Integer distance, Integer minute) {
         // 超过8公里的部分，每公里加收50%长途费
-        BigDecimal morethan = new BigDecimal((distance - minDistance)).multiply(midPrice.add(new BigDecimal(1)));
-        return morethan.add(midPrice.multiply(addItionalPrice));
+        BigDecimal moreLenght = new BigDecimal((distance - midDistance));
+        BigDecimal morethanPrice = moreLenght.multiply(midPrice.add(midPrice.multiply(addItionalPrice)));
+        return midPrice.multiply(new BigDecimal(midDistance-minDistance)).add(morethanPrice);
     }
 
     private static BigDecimal calMinute(Integer minute) {
