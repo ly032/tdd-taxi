@@ -11,7 +11,7 @@ public final class CalPrint {
 
     public static String getCalString(String fileStr) throws Exception {
         List<String> list = fileStringList(new File(fileStr));
-        String receipt= "";
+        String receipt = "";
         for (int i = 0; i < list.size(); i++) {
             List<Integer> numbers = getNumberfromString(list.get(i));
             Integer allPrice = TaxCalculation.calAll(numbers.get(0), numbers.get(1));
