@@ -30,18 +30,18 @@ public class TaxCalculation {
         }
     }
 
-    public static BigDecimal calTow(Integer distance, Integer minute) {
+    private static BigDecimal calTow(Integer distance, Integer minute) {
         // 超过2公里的部分每公里收取0.8元
         return (distance - minDistance) - midDistance > 0 ? calEight(distance, minute) : new BigDecimal((distance - minDistance)).multiply(midPrice);
     }
 
-    public static BigDecimal calEight(Integer distance, Integer minute) {
+    private static BigDecimal calEight(Integer distance, Integer minute) {
         // 超过8公里的部分，每公里加收50%长途费
         BigDecimal morethan = new BigDecimal((distance - minDistance)).multiply(midPrice);
         return morethan.add(midPrice.multiply(addItionalPrice.add(new BigDecimal(1))));
     }
 
-    public static BigDecimal calMinute(Integer minute) {
+    private static BigDecimal calMinute(Integer minute) {
         // 停车等待时加收每分钟0.25元
         return waitPrice.multiply(new BigDecimal(minute));
     }
