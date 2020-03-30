@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class AppRunnerTest {
+public class TaxCalculationTest {
 
     @Test
     public void lessTowTest() throws Exception {
@@ -56,22 +56,8 @@ public class AppRunnerTest {
         calTaxPrice(12, 3, 17);
     }
 
-    @Test
-    public void calPrintTest() throws Exception {
-        // 大于8公里,等待3分钟
-        String testDataFile = "src/main/resources/testData.txt";
-        String line = System.lineSeparator();
-        String testValue = String.format("收费7元" + line + "收费8元" + line + "收费21元");
-        calTaxPricePrint(testDataFile, testValue);
-    }
-
     private void calTaxPrice(Integer distance, Integer minute, Integer value) {
         TaxCalculation taxCalculation = new TaxCalculation();
         assertThat(TaxCalculation.calAll(distance, minute), is(value));
-    }
-
-    private void calTaxPricePrint(String filePath, String value) throws Exception {
-        CalPrint calPrint = new CalPrint();
-        assertThat(CalPrint.getCalString(filePath), is(value));
     }
 }
